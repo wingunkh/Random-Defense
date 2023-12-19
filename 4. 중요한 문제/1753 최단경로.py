@@ -1,0 +1,38 @@
+# 다익스트라 알고리즘 : 한 정점에서 다른 모든 정점까지의 최단 경로를 구할 때 사용
+# 단, 가중치 중에 음수가 없어야 한다.
+
+import sys, heapq
+input = sys.stdin.readline
+
+V, E = map(int, input().split())
+start = int(input())
+a = [[] for _ in range(V+1)]
+visited = [False for _ in range(V+1)]
+distance = [sys.maxsize for _ in range(V+1)] # 출발 노드와 이외의 모든 노드 간의 최단 거리 리스트
+pq = [] # 다익스트라 알고리즘은 현재까지 알고 있던 최단 경로를 토대로 최단 경로를 갱신
+
+for _ in range(E):
+    u, v, w = map(int, input().split())
+    a[u].append((v, w))
+
+distance[start] = 0 # 출발 노드에서 출발 노드까지의 최단 거리는 0
+heapq.heappush(pq, (0, start))
+
+while pq:
+    _, now = heapq.heappop(pq)
+
+    if visited[now]:
+        continue
+
+    visited[now] = True
+
+    for next, weight in a[now]:
+        if distance[next] > distance[now] + weight: # 최단 거리 갱신
+            distance[next] = distance[now] + weight
+            heapq.heappush(pq, (distance[next], next))
+
+for i in range(1, V+1):
+    if visited[i]:
+        print(distance[i])
+    else:
+        print("INF")
