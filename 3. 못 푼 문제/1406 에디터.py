@@ -22,5 +22,7 @@ for _ in range(int(input())):
         s1.append(buff[1])
         
 s1.extend(reversed(s2))
+# extend() 함수 시간복잡도 : O(len(...))
+# len(...)는 확장하고자 하는 이러터블 객체의 길이
 
 print(''.join(s1))
