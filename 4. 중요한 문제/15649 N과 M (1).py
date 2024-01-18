@@ -1,6 +1,7 @@
 def dfs(v, depth):
     if depth == m:
         print(' '.join(map(str, result)))
+        
         return
     
     for i in range(1, n+1):
