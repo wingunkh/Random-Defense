@@ -1,4 +1,4 @@
-def dfs(v, depth):
+def dfs(depth):
     if depth == m:
         print(' '.join(map(str, result)))
         
@@ -8,7 +8,7 @@ def dfs(v, depth):
         if not visited[i]:
             visited[i] = True
             result.append(i)
-            dfs(i, depth+1)
+            dfs(depth+1)
             visited[i] = False
             result.pop()
 
@@ -16,4 +16,4 @@ n, m = map(int, input().split())
 visited = [False for _ in range(n+1)]
 result = []
 
-dfs(0, 0)
+dfs(0)
