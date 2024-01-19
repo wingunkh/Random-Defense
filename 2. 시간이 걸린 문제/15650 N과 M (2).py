@@ -4,11 +4,11 @@ def dfs(x, depth):
         
         return
 
-    for i in range(x+1, n+1):
+    for i in range(x, n+1):
         if not visited[i]:
             visited[i] = True
             result.append(i)
-            dfs(i, depth+1)
+            dfs(i+1, depth+1)
             visited[i] = False
             result.pop()
 
@@ -16,4 +16,4 @@ n, m = map(int, input().split())
 visited = [False for _ in range(n+1)]
 result = []
 
-dfs(0, 0)
+dfs(1, 0)
