@@ -1,5 +1,5 @@
 def binary_search(n):
-    start, end = 0, len(a) - 1
+    start, end = 0, len(a)-1
 
     while start <= end:
         center = (start + end) // 2
@@ -7,9 +7,9 @@ def binary_search(n):
         if a[center] == n:
             return 1
         elif a[center] < n:
-            start = center + 1
+            start = center+1
         else:
-            end = center - 1
+            end = center-1
 
     return 0
 
