@@ -17,7 +17,7 @@ while True:
     if buff == 0:
         break
 
-    for i in range(3, len(a) // 2 + 1, 2):
+    for i in range(3, buff // 2 + 1, 2):
         if a[i] and a[buff - i]:
             print(f"{buff} = {i} + {buff - i}")
             break
