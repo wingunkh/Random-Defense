@@ -10,7 +10,7 @@ def dfs(index, depth):
         for r1, c1 in house:
             distance = sys.maxsize
 
-            for i in range(len(chicken)):
+            for i in range(len(check)):
                 if check[i]:
                     r2, c2 = chicken[i]
                     distance = min(distance, abs(r1 - r2) + abs(c1 - c2))
