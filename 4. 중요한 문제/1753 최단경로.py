@@ -6,9 +6,8 @@ input = sys.stdin.readline
 
 V, E = map(int, input().split())
 start = int(input())
-a = [[] for _ in range(V+1)]
-visited = [False for _ in range(V+1)]
-distance = [sys.maxsize for _ in range(V+1)] # 출발 노드와 이외의 모든 노드 간의 최단 거리 리스트
+a = [[] for _ in range(V + 1)]
+distance = [sys.maxsize for _ in range(V + 1)] # 출발 노드와 이외의 모든 노드 간의 최단 거리 리스트
 pq = [] # 다익스트라 알고리즘은 현재까지 알고 있던 최단 경로를 토대로 최단 경로를 갱신
 
 for _ in range(E):
@@ -21,18 +20,13 @@ heapq.heappush(pq, (0, start))
 while pq:
     _, now = heapq.heappop(pq)
 
-    if visited[now]:
-        continue
-
-    visited[now] = True
-
     for next, weight in a[now]:
         if distance[next] > distance[now] + weight: # 최단 거리 갱신
             distance[next] = distance[now] + weight
             heapq.heappush(pq, (distance[next], next))
 
-for i in range(1, V+1):
-    if visited[i]:
-        print(distance[i])
-    else:
+for i in range(1, V + 1):
+    if distance[i] == sys.maxsize:
         print("INF")
+    else:
+        print(distance[i])
