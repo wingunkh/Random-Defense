@@ -1,28 +1,31 @@
+import sys
 from collections import deque
+input = sys.stdin.readline
 
 def bfs(r, c):
     q = deque()
-    count = 0
-
-    a[r][c] = 0
     q.append((r, c))
-    count += 1
-    
+    a[r][c] = 0
+    result = 1
+
     while q:
         now_r, now_c = q.popleft()
         
         for i in range(4):
             next_r, next_c = now_r + dr[i], now_c + dc[i]
 
-            if 0 <= next_r < n and 0 <= next_c < n and a[next_r][next_c] == 1:
-                a[next_r][next_c] = 0
-                q.append((next_r, next_c))
-                count += 1
+            if not (0 <= next_r < n and 0 <= next_c < n):
+                continue
 
-    return count
+            if a[next_r][next_c] == 1:
+                q.append((next_r, next_c))
+                a[next_r][next_c] = 0
+                result += 1
+
+    return result
 
 n = int(input())
-a = [list(map(int, input())) for _ in range(n)]
+a = [list(map(int, input().rstrip())) for _ in range(n)]
 dr = [-1, 1, 0, 0]
 dc = [0, 0, -1, 1]
 result = []
@@ -35,4 +38,4 @@ for r in range(n):
 result.sort()
 
 print(len(result))
-print(*result, sep = "\n")
+print(*sorted(result), sep = "\n")
