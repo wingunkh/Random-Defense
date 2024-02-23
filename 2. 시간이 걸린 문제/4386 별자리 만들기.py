@@ -39,12 +39,8 @@ for start, end, weigth in edges:
 
     if start == end:
         continue
-
-    if start < end:
-        union(start, end)
-    else:
-        union(end, start)
-
+    
+    union(start, end)
     result += weigth
 
 print(round(result, 2))
