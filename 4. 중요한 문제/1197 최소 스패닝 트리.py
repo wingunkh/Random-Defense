@@ -36,11 +36,7 @@ for start, end, weight in edges:
     if start == end: # 루트 노드가 같다면 사이클이 존재함을 의미
         continue
 
-    if start < end: # 서로소 집합에서 제일 작은 숫자가 루트 노드가 되도록 설정
-        union(start, end)
-    else:
-        union(end, start)
-        
+    union(start, end)
     result += weight
 
 print(result)
