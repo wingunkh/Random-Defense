@@ -5,14 +5,14 @@ t = int(input())
 for _ in range(t):
     buff = input()
     n = int(input())
-    q = input()
-    q = deque(q[1:-1].split(','))
+    a = input()
+    q = deque(a[1:-1].split(','))
     flag = 0
 
     if n == 0:
         q = deque()
-    # 입력값이 빈 배열일 때 큐의 길이가 1이므로
-    # print(q) -> deque([''])
+    # 입력값이 빈 배열일 때 q = deque([''])
+    # 길이가 1이므로 q = deque([])가 되어야 함
 
     for i in buff:
         if i == 'R':
@@ -27,7 +27,7 @@ for _ in range(t):
                 q.pop()
     else:
         if flag % 2 == 0:
-            print("[" + ",".join(q) + "]")
+            print("[" + ','.join(q) + "]")
         else:
             q.reverse()
-            print("[" + ",".join(q) + "]")
+            print("[" + ','.join(q) + "]")
