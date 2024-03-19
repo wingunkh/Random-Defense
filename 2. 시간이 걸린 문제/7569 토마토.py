@@ -1,13 +1,11 @@
-import sys
 from collections import deque
-input = sys.stdin.readline
 
 def bfs():
     q = deque()
 
     for d in range(h):
-        for r in range(m):
-            for c in range(n):
+        for r in range(n):
+            for c in range(m):
                 if a[d][r][c] == 1:
                     q.append((d, r, c))
 
@@ -17,27 +15,37 @@ def bfs():
         for i in range(6):
             next_d, next_r, next_c = now_d + dd[i], now_r + dr[i], now_c + dc[i]
 
-            if 0 <= next_d < h and 0 <= next_r < m and 0 <= next_c < n:
-                if a[next_d][next_r][next_c] == 0:
-                    a[next_d][next_r][next_c] = a[now_d][now_r][now_c] + 1
-                    q.append((next_d, next_r, next_c))
+            if not (0 <= next_d < h and 0 <= next_r < n and 0 <= next_c < m):
+                continue
+            
+            if a[next_d][next_r][next_c] == 0:
+                q.append((next_d, next_r, next_c))
+                a[next_d][next_r][next_c] = a[now_d][now_r][now_c] + 1
 
-n, m, h = map(int, input().split())
-a = [[list(map(int, input().split())) for _ in range(m)] for _ in range(h)]
+m, n, h = map(int, input().split())
+a = []
 dr = [-1, 1, 0, 0, 0, 0]
 dc = [0, 0, -1, 1, 0, 0]
 dd = [0, 0, 0, 0, -1, 1]
 result = 0
 
+for _ in range(h):
+    buff = []
+    
+    for _ in range(n):
+        buff.append(list(map(int, input().split())))
+
+    a.append(buff)
+
 bfs()
 
 for d in range(h):
-    for r in range(m):
-        for c in range(n):
+    for r in range(n):
+        for c in range(m):
             if a[d][r][c] == 0:
                 print(-1)
                 exit()
-            else:
+            elif a[d][r][c] >= 1:
                 result = max(result, a[d][r][c])
-else:
-    print(result-1)
+
+print(result - 1)
