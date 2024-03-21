@@ -24,8 +24,8 @@ while q:
     
     print(now, end = ' ') 
 
-    for i in a[now]: # 큐에서 제거된 노드가 가리키는 노드들의 경
-        indegree[i] -= 1
-        
+    for i in a[now]: # 큐에서 제거된 노드가 가리키는 노드들의 경우
+        indegree[i] -= 1 # 진입 차수 1 감소
+         
         if indegree[i] == 0:
             q.append(i)
