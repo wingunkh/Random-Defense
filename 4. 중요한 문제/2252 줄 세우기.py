@@ -6,7 +6,7 @@ from collections import deque
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-a = [[] for _ in range(n + 1)]
+a = [[] for _ in range(n + 1)] # 그래프를 인접 리스트로 구현
 indegree = [0 for _ in range(n + 1)] # 진입 차수 리스트
 q = deque() # 위상 정렬 리스트
 
