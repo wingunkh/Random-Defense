@@ -6,7 +6,7 @@ input = sys.stdin.readline
 
 V, E = map(int, input().split())
 start = int(input())
-a = [[] for _ in range(V + 1)]
+a = [[] for _ in range(V + 1)] # 그래프를 인접 리스트로 구현
 distance = [sys.maxsize for _ in range(V + 1)] # 출발 노드와 이외의 모든 노드 간의 최단 거리 리스트
 pq = [] # 다익스트라 알고리즘은 현재까지 알고 있던 최단 경로를 토대로 최단 경로를 갱신
 
