@@ -22,7 +22,7 @@ def union(a, b):
         parent[b] = a
 
 v, e = map(int, input().split())
-edges = [list(map(int, input().split())) for _ in range(e)]
+edges = [list(map(int, input().split())) for _ in range(e)] # 그래프를 엣지 리스트로 구현
 parent = [i for i in range(v + 1)]
 result = 0
 
