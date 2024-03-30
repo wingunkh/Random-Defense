@@ -23,7 +23,6 @@ def dfs(x, depth):
         dfs(i + 1, depth + 1)
         visited[i] = False
 
-
 n = int(input())
 a = [list(map(int, input().split())) for _ in range(n)]
 visited = [False for _ in range(n)]
