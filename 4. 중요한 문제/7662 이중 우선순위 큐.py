@@ -1,5 +1,7 @@
 import sys, heapq
 # heapq를 통해 우선순위 큐를 구현
+# heappush() 시간복잡도 : O(logN)
+# heappop() 시간복잡도 : O(logN)
 input = sys.stdin.readline
 
 t = int(input())
@@ -17,7 +19,6 @@ for _ in range(t):
         if operation == 'I':
             heapq.heappush(min_heap, (n, i))
             heapq.heappush(max_heap, (-n, i))
-            # heapq는 내부적으로 최소 힙을 사용하므로 배열은 오름차순 정렬됨
         else:
             if n == -1 and min_heap:
                 sync[heapq.heappop(min_heap)[1]] = False
