@@ -7,7 +7,7 @@ for _ in range(t):
     n = int(input())
     a = input()
     q = deque(a[1:-1].split(','))
-    flag = 0
+    reverse = False
 
     if n == 0:
         q = deque()
@@ -16,18 +16,18 @@ for _ in range(t):
 
     for i in buff:
         if i == 'R':
-            flag += 1
+            reverse = not reverse
         else:
             if not q:
                 print("error")
                 break
-            elif flag % 2 == 0:
-                q.popleft()
-            else:
+            elif reverse:
                 q.pop()
+            else:
+                q.popleft()
     else:
-        if flag % 2 == 0:
-            print("[" + ','.join(q) + "]")
-        else:
+        if reverse:
             q.reverse()
-            print("[" + ','.join(q) + "]")
+            print('[' + ','.join(q) + ']')
+        else:
+            print('[' + ','.join(q) + ']')
