@@ -1,8 +1,10 @@
 from collections import deque
 
 def dfs(depth):
+    global result
+    
     if depth == 3:
-        bfs()
+        result = max(result, bfs())
 
         return
     
@@ -10,15 +12,13 @@ def dfs(depth):
         for c in range(m):
             if a[r][c] == 0:
                 a[r][c] = 1
-                dfs(depth+1)
+                dfs(depth + 1)
                 a[r][c] = 0
-
+    
 def bfs():
-    global result
-    
     q = deque()
-    count = 0
-    
+    safe = 0
+
     for r in range(n):
         for c in range(m):
             if a[r][c] == 2:
@@ -30,19 +30,22 @@ def bfs():
         for i in range(4):
             next_r, next_c = now_r + dr[i], now_c + dc[i]
 
-            if 0 <= next_r < n and 0 <= next_c < m and a[next_r][next_c] == 0:
-                q.append((next_r, next_c))
+            if not (0 <= next_r < n and 0 <= next_c < m):
+                continue
+
+            if a[next_r][next_c] == 0:
                 a[next_r][next_c] = -1
+                q.append((next_r, next_c))
 
     for r in range(n):
         for c in range(m):
             if a[r][c] == 0:
-                count += 1
+                safe += 1
             elif a[r][c] == -1:
                 a[r][c] = 0
 
-    result = max(result, count)
-            
+    return safe
+
 n, m = map(int, input().split())
 a = [list(map(int, input().split())) for _ in range(n)]
 dr = [-1, 1, 0, 0]
