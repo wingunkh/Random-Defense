@@ -1,5 +1,6 @@
 n = int(input())
 a = []
+result = []
 
 for _ in range(n):
     x, y = map(int, input().split())
@@ -7,12 +8,15 @@ for _ in range(n):
 
 for i in range(len(a)):
     target = a[i]
-    count = 1
+    rank = 1
+
     for j in range(len(a)):
         if i == j:
             continue
-        
-        if a[j][0] > target[0] and a[j][1] > target[1]:
-            count += 1
 
-    print(count, end = ' ')
+        if a[i][0] < a[j][0] and a[i][1] < a[j][1]:
+            rank += 1
+
+    result.append(rank)
+
+print(*result)
