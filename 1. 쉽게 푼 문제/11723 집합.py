@@ -23,6 +23,6 @@ for _ in range(n):
         else:
             s.add(int(buff[1]))
     elif buff[0] == "all":
-        s = set([i for i in range(1,21)])
+        s = set([i for i in range(1, 21)])
     else:
         s = set()
