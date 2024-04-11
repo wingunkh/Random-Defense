@@ -1,11 +1,14 @@
-n = int(input())
+import sys
+input = sys.stdin.readline
+
+k = int(input())
 stack = []
 
-for _ in range(n):
-    buff = int(input())
+for _ in range(k):
+    n = int(input())
 
-    if buff:
-        stack.append(buff)
+    if n:
+        stack.append(n)
     else:
         stack.pop()
 
