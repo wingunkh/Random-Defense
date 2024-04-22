@@ -1,19 +1,19 @@
 import sys
 input = sys.stdin.readline
 
-def dfs(index, depth):
+def dfs(x, depth):
     global result
-
+    
     if depth == m:
         tmp = 0
-        
+
         for r1, c1 in house:
             distance = sys.maxsize
-
-            for i in range(len(check)):
-                if check[i]:
+            
+            for i in range(len(chicken)):
+                if visited[i]:
                     r2, c2 = chicken[i]
-                    distance = min(distance, abs(r1 - r2) + abs(c1 - c2))
+                    distance = min(distance, abs(r2 - r1) + abs(c2 - c1))
 
             tmp += distance
 
@@ -21,16 +21,15 @@ def dfs(index, depth):
 
         return
 
-    for i in range(index, len(chicken)):
-        check[i] = True
-        dfs(i+1, depth+1)
-        check[i] = False
-            
+    for i in range(x, len(chicken)):
+        visited[i] = True
+        dfs(i + 1, depth + 1)
+        visited[i] = False
+    
 n, m = map(int, input().split())
 a = [list(map(int, input().split())) for _ in range(n)]
 house = []
 chicken = []
-check = []
 result = sys.maxsize
 
 for r in range(n):
@@ -40,7 +39,7 @@ for r in range(n):
         elif a[r][c] == 2:
             chicken.append((r, c))
 
-check = [False for _ in range(len(chicken))]
+visited = [False for _ in range(len(chicken))]
 
 dfs(0, 0)
 
