@@ -9,9 +9,9 @@ for _ in range(n):
     buff = input().split()
 
     if buff[0] == "push_front":
-        d.appendleft(buff[1])
+        d.appendleft(int(buff[1]))
     elif buff[0] == "push_back":
-        d.append(buff[1])
+        d.append(int(buff[1]))
     elif buff[0] == "pop_front":
         print(d.popleft()) if d else print(-1)
     elif buff[0] == "pop_back":
