@@ -1,5 +1,7 @@
 import sys, heapq
-# heapq를 통해 우선순위 큐를 구현
+# 최소 힙 자료구조를 통해 우선순위 큐를 구현
+# 힙은 부모 노드가 자식 노드보다 작거나 같다는 조건을 만족하지만,
+# 자식 노드간의 순서는 정렬된 순서를 보장하지 않음 (느슨한 정렬)
 # heappush() 시간복잡도 : O(logN)
 # heappop() 시간복잡도 : O(logN)
 input = sys.stdin.readline
