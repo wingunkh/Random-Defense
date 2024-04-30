@@ -15,6 +15,8 @@ def melt(r, c):
         if a[r][c] == 0:
             a[r][c] = -1
 
+            return
+
 def bfs(r, c):
     q = deque()
     q.append((r, c))
@@ -38,7 +40,7 @@ a = [list(map(int, input().split())) for _ in range(n)]
 dr = [-1, 1, 0, 0]
 dc = [0, 0, -1, 1]
 result = 0
-            
+
 while True:
     result += 1
     visited = [[False for _ in range(m)] for _ in range(n)]
@@ -46,19 +48,19 @@ while True:
 
     for r in range(n):
         for c in range(m):
-            if a[r][c] != 0:
+            if a[r][c] > 0:
                 melt(r, c)
 
     for r in range(n):
         for c in range(m):
-            if a[r][c] < 0:
+            if a[r][c] == -1:
                 a[r][c] = 0
 
     for r in range(n):
         for c in range(m):
-            if a[r][c] != 0 and not visited[r][c]:
-                count += 1
+            if a[r][c] > 0 and not visited[r][c]:
                 bfs(r, c)
+                count += 1
 
     if count > 1:
         print(result)
