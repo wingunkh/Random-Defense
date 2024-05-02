@@ -3,18 +3,28 @@ from collections import deque
 t = int(input())
 
 for _ in range(t):
-    n, k = map(int, input().split())
-    q = deque(map(int, input().split()))
-    result = 1
+    n, m = map(int, input().split())
+    buff = list(map(int, input().split()))
+    q = deque()
+    result = 0
+    
+    for i in range(n):
+        q.append((buff[i], i))
 
-    while True:
-        if q[0] == max(q):
-            if k == 0:
-                print(result)
-                break
-            q.popleft()
+    while q:
+        maximum = 0
+
+        for i in q:
+            maximum = max(maximum, i[0])
+        
+        if q[0][0] == maximum:
             result += 1
+            
+            if q[0][1] == m:
+                break
+            else:
+                q.popleft()
         else:
             q.append(q.popleft())
 
-        k = (k - 1) if k > 0 else (len(q) - 1)
+    print(result)
