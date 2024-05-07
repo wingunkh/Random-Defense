@@ -14,7 +14,7 @@ for gender, target in student:
     if gender == 1:
         for i in range(1, n + 1):
             if i % target == 0:
-                a[i] = 1 - a[i]
+                a[i] = 1 - a[i] # 토글
     else:
         a[target] = 1 - a[target]
         left, right = target - 1, target + 1
