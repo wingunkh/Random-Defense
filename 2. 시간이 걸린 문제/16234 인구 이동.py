@@ -4,14 +4,14 @@ def bfs(r, c):
     q = deque()
     buff = []
     sum = a[r][c]
-    
-    q.append((r, c))
-    buff.append((r, c))
-    visited[r][c] = True
 
+    q.append((r, c))
+    visited[r][c] = True
+    buff.append((r, c))
+    
     while q:
         now_r, now_c = q.popleft()
-
+        
         for i in range(4):
             next_r, next_c = now_r + dr[i], now_c + dc[i]
 
@@ -20,27 +20,23 @@ def bfs(r, c):
 
             if not visited[next_r][next_c] and s <= abs(a[now_r][now_c] - a[next_r][next_c]) <= e:
                 q.append((next_r, next_c))
-                buff.append((next_r, next_c))
                 visited[next_r][next_c] = True
+                buff.append((next_r, next_c))
                 sum += a[next_r][next_c]
 
     if len(buff) > 1:
-        for i in range(len(buff)):
-            r, c = buff[i]
+        for r, c in buff:
             a[r][c] = int(sum / len(buff))
 
         return True
     else:
         return False
-    
+
 n, s, e = map(int, input().split())
-a = []
+a = [list(map(int, input().split())) for _ in range(n)]
 dr = [-1, 1, 0, 0]
 dc = [0, 0, -1, 1]
 result = 0
-
-for _ in range(n):
-    a.append(list(map(int, input().split())))
 
 while True:
     visited = [[False for _ in range(n)] for _ in range(n)]
@@ -52,8 +48,8 @@ while True:
                 if bfs(r, c):
                     moved = True
 
-    if not moved:
+    if moved:
+        result += 1
+    else:
         print(result)
         break
-    else:
-        result += 1
