@@ -2,12 +2,10 @@ from collections import deque
 
 def bfs(r, c, size):
     q = deque()
-    visited = [[False for _ in range(n)] for _ in range(n)]
-    distance = [[0 for _ in range(n)] for _ in range(n)]
     fish = []
-
+    
     q.append((r, c))
-    visited[r][c] = True
+    visited[r][c] = 1
 
     while q:
         now_r, now_c = q.popleft()
@@ -20,11 +18,10 @@ def bfs(r, c, size):
 
             if not visited[next_r][next_c] and size >= a[next_r][next_c]:
                 q.append((next_r, next_c))
-                visited[next_r][next_c] = True
-                distance[next_r][next_c] = distance[now_r][now_c] + 1
+                visited[next_r][next_c] = visited[now_r][now_c] + 1
 
                 if 0 < a[next_r][next_c] < size:
-                    fish.append((next_r, next_c, distance[next_r][next_c]))
+                    fish.append((next_r, next_c, visited[next_r][next_c] - 1))
 
     return sorted(fish, key = lambda x: (x[2], x[0], x[1]))
 
@@ -44,16 +41,17 @@ for r in range(n):
             a[shark_r][shark_c] = 0
 
 while True:
+    visited = [[False for _ in range(n)] for _ in range(n)]
     fish = bfs(shark_r, shark_c, size)
-
-    if len(fish) == 0:
+    
+    if not fish:
         print(result)
         break
-
+    
     shark_r, shark_c, time = fish[0]
+    a[shark_r][shark_c] = 0
     result += time
     count += 1
-    a[shark_r][shark_c] = 0
 
     if count == size:
         size += 1
