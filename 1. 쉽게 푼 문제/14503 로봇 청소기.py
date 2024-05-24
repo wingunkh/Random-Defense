@@ -4,7 +4,7 @@ a = [list(map(int, input().split())) for _ in range(n)]
 dr = [-1, 0, 1, 0]
 dc = [0, 1, 0, -1]
 result = 0
-    
+
 while True:
     if a[r][c] == 0:
         a[r][c] = 2
