@@ -2,9 +2,7 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 
-t = int(input())
-
-def bfs():    
+def bfs():
     q = deque()
     q.append((n, ""))
     visited[n] = True
@@ -15,29 +13,31 @@ def bfs():
         if now_n == m:
             return result
             
-        tmp = D(now_n)
+        d = D(now_n)
         
-        if not visited[tmp]:
-            q.append((tmp, result + "D"))
-            visited[tmp] = True
+        if not visited[d]:
+            q.append((d, result + "D"))
+            visited[d] = True
 
-        tmp = S(now_n)
+        s = S(now_n)
         
-        if not visited[tmp]:
-            q.append((tmp, result + "S"))
-            visited[tmp] = True
+        if not visited[s]:
+            q.append((s, result + "S"))
+            visited[s] = True
 
-        tmp = L(now_n)
+        l = L(now_n)
         
-        if not visited[tmp]:
-            q.append((tmp, result + "L"))
-            visited[tmp] = True
+        if not visited[l]:
+            q.append((l, result + "L"))
+            visited[l] = True
 
-        tmp = R(now_n)
+        r = R(now_n)
         
-        if not visited[tmp]:
-            q.append((tmp, result + "R"))
-            visited[tmp] = True
+        if not visited[r]:
+            q.append((r, result + "R"))
+            visited[r] = True
+
+t = int(input())
 
 def D(n):
     return (2 * n) % 10000
