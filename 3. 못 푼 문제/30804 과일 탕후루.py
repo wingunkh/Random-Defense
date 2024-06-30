@@ -16,9 +16,11 @@ while right < n:
     # 슬라이딩 윈도우 내 서로 다른 숫자의 개수가 2를 초과하면 left를 오른쪽으로 이동
     while count > 2:
         dic[a[left]] -= 1
+        
         if dic[a[left]] == 0:
             del dic[a[left]]
             count -= 1
+            
         left += 1
 
     # 현재 슬라이딩 윈도우의 길이를 결과값과 비교하여 최대값 갱신
