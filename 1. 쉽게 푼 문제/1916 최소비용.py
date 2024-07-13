@@ -1,11 +1,11 @@
-import sys, heapq
+import sys
+from heapq import heappush, heappop
 input = sys.stdin.readline
-
+        
 n = int(input())
 m = int(input())
-a = [[] for _ in range(n+1)]
-visited = [False for _ in range(n+1)]
-distance = [sys.maxsize for _ in range(n+1)]
+a = [[] for _ in range(n + 1)]
+distance = [sys.maxsize for _ in range(n + 1)]
 pq = []
 
 for _ in range(m):
@@ -14,19 +14,17 @@ for _ in range(m):
 
 start, end = map(int, input().split())
 distance[start] = 0
-heapq.heappush(pq, (0, start))
+heappush(pq, (0, start)) # (가중치, 목적지)
 
 while pq:
-    _, now = heapq.heappop(pq)
+    weight, now = heappop(pq)
 
-    if visited[now]:
+    if distance[now] < weight:
         continue
-
-    visited[now] = True
 
     for next, weight in a[now]:
         if distance[next] > distance[now] + weight:
             distance[next] = distance[now] + weight
-            heapq.heappush(pq, (distance[next], next))
+            heappush(pq, (distance[next], next))
 
 print(distance[end])
