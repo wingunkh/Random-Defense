@@ -10,7 +10,7 @@ for i in range(n):
     a.append((memory[i], c[i]))
 
 for i in range(1, n + 1):
-    for j in range(1, sum(c) + 1):
+    for j in range(sum(c) + 1):
         cost = a[i - 1][1] # 무게 -> 코스트
         byte = a[i - 1][0] # 가치 -> 바이트
 
