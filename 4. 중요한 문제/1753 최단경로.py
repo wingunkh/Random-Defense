@@ -7,7 +7,7 @@ input = sys.stdin.readline
 V, E = map(int, input().split())
 start = int(input())
 a = [[] for _ in range(V + 1)] # 그래프를 인접 리스트로 구현
-distance = [sys.maxsize for _ in range(V + 1)] # 출발 노드와 이외의 모든 노드 간의 최단 경로 리스트
+distance = [sys.maxsize for _ in range(V + 1)] # distance[i] = 출발 노드와 i 노드 간의 최단 경로
 pq = [] # 다익스트라 알고리즘은 현재까지 알고 있던 최단 경로를 토대로 최단 경로를 갱신
 
 for _ in range(E):
@@ -20,11 +20,11 @@ heapq.heappush(pq, (0, start)) # (가중치, 목적지)
 while pq:
     weight, now = heapq.heappop(pq)
 
-    if distance[now] < weight: # 더 이상 최단 경로가 아닌 경로일 경우 무시
+    if weight > distance[now]: # 현재 경로가 더 이상 최단 경로가 아닌 경로일 경우 무시
         continue
 
     for next, weight in a[now]:
-        if distance[next] > distance[now] + weight: # 최단 경로 갱신
+        if distance[now] + weight < distance[next]: # 최단 경로 갱신
             distance[next] = distance[now] + weight
             heapq.heappush(pq, (distance[next], next))
 
