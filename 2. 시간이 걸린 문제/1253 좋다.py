@@ -1,23 +1,23 @@
 n = int(input())
-a = sorted(list(map(int, input().split())))
+a = list(map(int, input().split()))
+a.sort()
 result = 0
 
 for i in range(len(a)):
-    start = 0
-    end = len(a) - 1
+    left, right = 0, len(a) - 1
 
-    while start < end: 
-        sum = a[start] + a[end]
+    while left < right:
+        sum = a[left] + a[right]
 
         if sum > a[i]:
-            end -= 1
+            right -= 1
         elif sum < a[i]:
-            start += 1
+            left += 1
         else:
-            if start == i:
-                start += 1
-            elif end == i:
-                end -= 1
+            if left == i:
+                left += 1
+            elif right == i:
+                right -= 1
             else:
                 result += 1
                 break
