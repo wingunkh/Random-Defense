@@ -15,12 +15,11 @@ a = [[] for _ in range(n + 1)]
 distance = [0 for _ in range(n + 1)]
 
 for _ in range(n):
-    buff = list(map(int, input().split()))
-    node = buff[0]
-    buff = buff[1:-1]
+    tmp = list(map(int, input().split()))
 
-    for j in range(0, len(buff), 2):
-        a[node].append((buff[j], buff[j + 1]))
+    for i in range(1, len(tmp) - 1, 2):
+        a[tmp[0]].append((tmp[i], tmp[i + 1]))
+
 
 visited = [False for _ in range(n + 1)]
 dfs(1, 0)
