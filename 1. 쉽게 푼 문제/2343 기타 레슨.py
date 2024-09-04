@@ -1,26 +1,29 @@
+import sys
+
 n, m = map(int, input().split())
 a = list(map(int, input().split()))
-left = max(a)
-right = sum(a)
+left, right = max(a), sum(a)
+result = sys.maxsize
 
 while left <= right:
     center = (left + right) // 2
     tmp = 0
     count = 0
-    
+
     for i in a:
         if tmp + i > center:
-            tmp = 0
             count += 1
-
-        tmp += i
+            tmp = i
+        else:
+            tmp += i
     else:
         if tmp:
             count += 1
-            
+
     if count > m:
         left = center + 1
     else:
+        result = center
         right = center - 1
-        
-print(left)
+
+print(result)
