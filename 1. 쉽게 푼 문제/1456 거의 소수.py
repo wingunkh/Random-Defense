@@ -14,12 +14,12 @@ for i in range(2, len(a)):
     if a[i] == 0:
         continue
 
-    tmp = a[i] * a[i]
+    tmp = i * i
 
     while tmp <= m:
         if tmp >= n:
             result += 1
 
-        tmp *= a[i]
+        tmp *= i
 
 print(result)
