@@ -18,14 +18,14 @@ distance[start] = 0 # 출발 노드에서 출발 노드까지의 최단 경로�
 heapq.heappush(pq, (0, start)) # (가중치, 목적지)
 
 while pq:
-    weight, now = heapq.heappop(pq)
+    now_weight, now = heapq.heappop(pq)
 
-    if weight > distance[now]: # 현재 경로가 더 이상 최단 경로가 아닌 경로일 경우 무시
+    if now_weight > distance[now]: # 현재 경로가 더 이상 최단 경로가 아닌 경로일 경우 무시
         continue
 
-    for next, weight in a[now]:
-        if distance[now] + weight < distance[next]: # 최단 경로 갱신
-            distance[next] = distance[now] + weight
+    for next, next_weight in a[now]:
+        if distance[now] + next_weight < distance[next]: # 최단 경로 갱신
+            distance[next] = distance[now] + next_weight
             heapq.heappush(pq, (distance[next], next))
 
 for i in range(1, V + 1):
