@@ -1,9 +1,6 @@
-import sys
-sys.setrecursionlimit(10 ** 6)
-
 def dfs(x, y, z):
     visited[x][y] = True
-    
+
     if x == 0:
         result.append(z)
 
@@ -42,8 +39,11 @@ def dfs(x, y, z):
 
 a, b, c = map(int, input().split())
 visited = [[False for _ in range(b + 1)] for _ in range(a + 1)]
+# visited[x][y] = a물통에 x, b물통에 y만큼의 물이 차 있는 상황
 result = []
 
 dfs(0, 0, c)
 
-print(*sorted(result), sep = ' ')
+result.sort()
+
+print(*result)
