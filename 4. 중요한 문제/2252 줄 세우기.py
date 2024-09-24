@@ -24,7 +24,6 @@ for i in range(1, n + 1):
 
 while q:
     now = q.popleft() # 진입 차수가 0인 노드를 큐에서 제거
-    
     print(now, end = ' ') 
 
     for i in a[now]: # 큐에서 제거된 노드가 가리키는 노드들의 경우
