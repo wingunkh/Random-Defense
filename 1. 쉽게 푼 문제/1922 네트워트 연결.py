@@ -4,7 +4,7 @@ input = sys.stdin.readline
 
 def find(a):
     if a == parent[a]:
-        return a
+        return parent[a]
     else:
         parent[a] = find(parent[a])
 
@@ -25,14 +25,14 @@ result = 0
 
 edges.sort(key = lambda x: x[2])
 
-for start, end, weight in edges:
-    start = find(start)
-    end = find(end)
+for s, e, w in edges:
+    s = find(s)
+    e = find(e)
 
-    if start == end:
+    if s == e:
         continue
 
-    union(start, end)
-    result += weight
+    union(s, e)
+    result += w
 
 print(result)
