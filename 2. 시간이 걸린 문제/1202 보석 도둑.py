@@ -2,24 +2,17 @@ import sys, heapq
 input = sys.stdin.readline
 
 n, k = map(int, input().split())
-jewel = []
-
-for _ in range(n):
-    jewel.append(tuple(map(int, input().split())))
-
-bag = []
-
-for _ in range(k):
-    bag.append(int(input()))
-
-jewel.sort(reverse = True)
-bag.sort()
+diamond = [tuple(map(int, input().split())) for _ in range(n)]
+bag = [int(input()) for _ in range(k)]
 pq = []
 result = 0
 
+diamond.sort(reverse = True)
+bag.sort()
+
 for i in bag:
-    while jewel and jewel[-1][0] <= i:
-        weight, cost = jewel.pop()
+    while diamond and diamond[-1][0] <= i: # 가방에 넣을 수 있는 모든 다이아몬드 고려
+        _, cost = diamond.pop()
         heapq.heappush(pq, -cost)
 
     if pq:
