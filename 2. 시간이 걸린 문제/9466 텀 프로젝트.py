@@ -2,19 +2,19 @@ import sys
 sys.setrecursionlimit(10 ** 6)
 input = sys.stdin.readline
 
-def dfs(x, team):
-    visited[x] = True
+def dfs(v, team):
+    visited[v] = True
 
-    if not visited[a[x]]:
-        team.append(a[x])
-        
-        return dfs(a[x], team)
+    if not visited[a[v]]:
+        team.append(a[v])
+
+        return dfs(a[v], team)
     else:
-        if a[x] in team:
-            return len(team[team.index(a[x]):])
+        if a[v] in team:
+            return len(team[team.index(a[v]):])
         else:
-            return 0
-            
+            return 0 
+
 t = int(input())
 
 for _ in range(t):
