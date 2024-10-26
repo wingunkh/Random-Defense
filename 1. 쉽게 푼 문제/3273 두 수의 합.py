@@ -1,8 +1,7 @@
 n = int(input())
 a = sorted(list(map(int, input().split())))
 target = int(input())
-left = 0
-right = n - 1
+left, right = 0, n - 1
 result = 0
 
 while left < right:
@@ -12,9 +11,9 @@ while left < right:
         result += 1
         left += 1
         right -= 1
-    elif sum < target:
-        left += 1
-    else:
+    elif sum > target:
         right -= 1
+    else:
+        left += 1
     
 print(result)
