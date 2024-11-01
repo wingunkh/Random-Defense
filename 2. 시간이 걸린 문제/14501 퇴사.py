@@ -1,14 +1,12 @@
 n = int(input())
-a = []
+a = [tuple(map(int, input().split())) for _ in range(n)]
 dp = [0 for _ in range(n + 1)]
-# dp[i] = i 일차까지 일했을 때 얻을 수 있는 최대 수익
-
-for _ in range(n):
-    time, money = map(int, input().split())
-    a.append((time, money))
+# dp[i] = i일차까지 일했을 때 얻을 수 있는 최대 수익
 
 for i in range(n):
-    for j in range(i + a[i][0], n + 1):
-        dp[j] = max(dp[j], dp[i] + a[i][1])
+    time, money = a[i]
+
+    for j in range(i + time, n + 1):
+        dp[j] = max(dp[j], dp[i] + money)
 
 print(dp[-1])
