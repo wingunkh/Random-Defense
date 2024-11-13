@@ -1,20 +1,16 @@
 from collections import deque
 
-def water():
+def water(r, c):
     q = deque()
-
-    for r in range(n):
-        for c in range(m):
-            if a[r][c] == '*':
-                q.append((r, c))
-                a[r][c] = 0
+    q.append((r, c))
+    a[r][c] = 0
 
     while q:
         now_r, now_c = q.popleft()
 
         for i in range(4):
             next_r, next_c = now_r + dr[i], now_c + dc[i]
-            
+
             if not (0 <= next_r < n and 0 <= next_c < m):
                 continue
 
@@ -22,16 +18,16 @@ def water():
                 q.append((next_r, next_c))
                 a[next_r][next_c] = a[now_r][now_c] + 1
 
-def hedgehog(r, c, depth):
+def dochi(r, c):
     q = deque()
-    q.append((r, c, depth))
+    q.append((r, c, 0))
 
     while q:
         now_r, now_c, depth = q.popleft()
 
         for i in range(4):
             next_r, next_c = now_r + dr[i], now_c + dc[i]
-                        
+
             if not (0 <= next_r < n and 0 <= next_c < m):
                 continue
 
@@ -51,7 +47,6 @@ n, m = map(int, input().split())
 a = [list(input()) for _ in range(n)]
 dr = [-1, 1, 0, 0]
 dc = [0, 0, -1, 1]
-result = 0
 
 for r in range(n):
     for c in range(m):
@@ -59,5 +54,9 @@ for r in range(n):
             start_r, start_c = r, c
             a[r][c] = '.'
 
-water()
-print(hedgehog(start_r, start_c, 0))
+for r in range(n):
+    for c in range(m):
+        if a[r][c] == '*':
+            water(r, c)
+
+print(dochi(start_r, start_c))
